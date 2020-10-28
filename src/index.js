@@ -1,6 +1,14 @@
+require('./model/user');
 const express=require('express');
-const mongoose=require('mongoose');
+const mongoose=require('mongoose'); //use for connecting mongo db
+const authRoutes=require('./routes/authRoutes'); //use for authincation
+const bodyParser=require('body-parser'); //use for parser data into json/input data
+
 const app=express();
+
+
+app.use(bodyParser.json());
+app.use(authRoutes);
 
 const mongoUri='mongodb+srv://admin:admin@cluster0.e2hwc.mongodb.net/<dbname>?retryWrites=true&w=majority';
 

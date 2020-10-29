@@ -16,12 +16,14 @@ router.post('/signup',async (req,res)=>{
         const user = new User({email, password});
         await user.save();
         const token=jwt.sign({userId:user._id},'MY_SECRET_KEY');
+       res.setHeader("Authorization","application/json");
         res.send({token});
+        //next();
     }catch(err){
         return res.status(422).send(err.message)
     }
 
-res.send(req.body);
+//res.send(req.body);
 
 });
 router.post('/signin',async(req,res)=>{
